@@ -6,15 +6,18 @@ dotenv.config({ path: "./config.env" });
 require("./db/connection");
 //const User = require("./model/userSchema");
 
+app.use(express.json());
+app.use(require("./router/auth"));
+
 const PORT = process.env.PORT;
 
 const middleware = (req, res, next) => {
   next();
 };
 
-app.get("/", (req, res) => {
-  res.send("home");
-});
+// app.get("/", (req, res) => {
+//   res.send("home");
+// });
 
 app.get("/about", middleware, (req, res) => {
   res.send("about");
